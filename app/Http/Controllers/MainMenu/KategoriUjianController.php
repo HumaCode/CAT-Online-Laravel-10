@@ -74,7 +74,7 @@ class KategoriUjianController extends Controller
      */
     public function show(string $id)
     {
-        //
+        #
     }
 
     /**

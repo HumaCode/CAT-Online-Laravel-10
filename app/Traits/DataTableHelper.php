@@ -56,9 +56,16 @@ trait DataTableHelper
 
     public static function generateButtons($path, $routes)
     {
-        $detail = user()->can('read ' . $path) && !empty($routes['detail']) ?
-            '<a href="' . $routes['detail'] . '" class="btn btn-outline-secondary btn-border btn-sm action card-animate" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Detail"><i class="mdi mdi-eye"></i></a>'
-            : '';
+
+        if (isset($routes['tmbh'])) {
+            $detail = user()->can('create ' . $path) && !empty($routes['tmbh']) ?
+                '<a href="' . $routes['tmbh'] . '" class="btn btn-outline-secondary btn-border btn-sm action card-animate" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tambah Soal"><i class="mdi mdi-plus"></i></a>'
+                : '';
+        } else {
+            $detail = user()->can('read ' . $path) && !empty($routes['detail']) ?
+                '<a href="' . $routes['detail'] . '" class="btn btn-outline-secondary btn-border btn-sm action card-animate" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Detail"><i class="mdi mdi-eye"></i></a>'
+                : '';
+        }
 
         $edit = user()->can('update ' . $path) && !empty($routes['edit']) ?
             '<a href="' . $routes['edit'] . '" class="btn btn-outline-success btn-border btn-sm action card-animate" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit"><i class="mdi mdi-grease-pencil"></i></a>'
