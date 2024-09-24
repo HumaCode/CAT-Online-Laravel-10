@@ -59,7 +59,7 @@ trait DataTableHelper
 
         if (isset($routes['tmbh'])) {
             $detail = user()->can('create ' . $path) && !empty($routes['tmbh']) ?
-                '<a href="' . $routes['tmbh'] . '" class="btn btn-outline-secondary btn-border btn-sm action card-animate" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tambah Soal"><i class="mdi mdi-plus"></i></a>'
+                '<a href="' . $routes['tmbh'] . '" class="btn btn-outline-secondary btn-border btn-sm card-animate" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tambah Soal"><i class="mdi mdi-plus"></i></a>'
                 : '';
         } else {
             $detail = user()->can('read ' . $path) && !empty($routes['detail']) ?

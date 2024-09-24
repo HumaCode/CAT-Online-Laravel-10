@@ -6,6 +6,7 @@ use App\Http\Controllers\Konfigurasi\MenuController;
 use App\Http\Controllers\Konfigurasi\PermissionController;
 use App\Http\Controllers\Konfigurasi\RoleController;
 use App\Http\Controllers\Konfigurasi\UserController;
+use App\Http\Controllers\MainMenu\DetailSoalController;
 use App\Http\Controllers\MainMenu\KategoriUjianController;
 use App\Http\Controllers\MainMenu\QuestionController;
 use App\Http\Controllers\MainMenu\SesiUjianController;
@@ -32,6 +33,16 @@ Route::group(['prefix' => 'main-menu', 'as' => 'main-menu.'], function () {
     // Kategori Ujian
     Route::post('kategori-ujian/data', [KategoriUjianController::class, 'getData'])->name('kategori-ujian.data');
     Route::resource('kategori-ujian', KategoriUjianController::class);
+
+    // detail soal
+    Route::get('data-soal/detail/{kode_soal}', [DetailSoalController::class, 'index'])->name('detail-soal.index');
+    Route::post('data-soal/detail/data/{kode_soal}', [DetailSoalController::class, 'getData'])->name('detail-soal.data');
+    Route::get('data-soal/detail/create/{kode_soal}', [DetailSoalController::class, 'create'])->name('detail-soal.create');
+    Route::post('data-soal/detail/store/{kode_soal}', [DetailSoalController::class, 'store'])->name('detail-soal.store');
+    Route::get('data-soal/detail/show/{kode_soal}/{id}', [DetailSoalController::class, 'show'])->name('detail-soal.show');
+    Route::get('data-soal/detail/edit/{kode_soal}/{id}', [DetailSoalController::class, 'edit'])->name('detail-soal.edit');
+    Route::post('data-soal/detail/update/{kode_soal}/{id}', [DetailSoalController::class, 'update'])->name('detail-soal.update');
+    Route::get('data-soal/detail/destroy/{kode_soal}/{id}', [DetailSoalController::class, 'destroy'])->name('detail-soal.destroy');
 
     // soal
     Route::post('data-soal/data', [QuestionController::class, 'getData'])->name('data-soal.data');

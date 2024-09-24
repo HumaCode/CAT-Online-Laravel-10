@@ -21,21 +21,21 @@
             <!-- end page title -->
 
 
-            <div class="col-xxl-4 col-lg-12">
+            <div class=" col-lg-12">
                 <div class="card">
                     <div class="card-header">
                         @can('create konfigurasi/menu')
-                        <a href="{{ route('konfigurasi.menu.create') }}"
-                            class="btn btn-primary btn-animation float-end waves-effect waves-light action"> <i
-                                class="mdi mdi-plus"></i> &nbsp; Tambah
-                        </a>
+                            <a href="{{ route('konfigurasi.menu.create') }}"
+                                class="btn btn-primary btn-animation float-end waves-effect waves-light action"> <i
+                                    class="mdi mdi-plus"></i> &nbsp; Tambah
+                            </a>
                         @endcan
 
                         @can('sort konfigurasi/menu')
-                        <a href="{{ route('konfigurasi.menu.sort') }}"
-                            class="btn btn-info btn-animation float-end waves-effect waves-light sort"
-                            style="margin-right: 10px"> <i class="mdi mdi-sort"></i> &nbsp; Sort
-                        </a>
+                            <a href="{{ route('konfigurasi.menu.sort') }}"
+                                class="btn btn-info btn-animation float-end waves-effect waves-light sort"
+                                style="margin-right: 10px"> <i class="mdi mdi-sort"></i> &nbsp; Sort
+                            </a>
                         @endcan
 
 
@@ -59,11 +59,11 @@
     </div>
 
     @push('js')
-    {!! $dataTable->scripts() !!}
+        {!! $dataTable->scripts() !!}
 
 
-    <script>
-        const datatableId = 'menu-table';
+        <script>
+            const datatableId = 'menu-table';
 
             function handleMenuChange() {
                 $('[name=level_menu]').on('change', function() {
@@ -92,7 +92,7 @@
 
             handleAction(datatableId, function() {
                 handleMenuChange()
-            })            
-    </script>
+            })
+        </script>
     @endpush
 </x-master-layout>

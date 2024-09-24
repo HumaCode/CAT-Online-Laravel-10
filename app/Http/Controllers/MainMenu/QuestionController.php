@@ -31,7 +31,7 @@ class QuestionController extends Controller
             ->addColumn('action', function ($row) use ($konfig_data_soal) {
 
                 $routes = [
-                    'tmbh'  => route('main-menu.data-soal.show', $row->id),
+                    'tmbh'  => route('main-menu.detail-soal.index', $row->kode_soal),
                     'edit'  => route('main-menu.data-soal.edit', $row->id),
                     'hapus' => route('main-menu.data-soal.destroy', $row->id)
                 ];
