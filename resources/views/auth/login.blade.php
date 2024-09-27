@@ -1,6 +1,6 @@
-
 <!doctype html>
-<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-layout-mode="light" data-body-image="img-1" data-preloader="disable">
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+    data-sidebar-image="none" data-layout-mode="light" data-body-image="img-1" data-preloader="disable">
 
 <head>
 
@@ -22,6 +22,7 @@
     <link href="{{ asset('') }}assets/css/app.min.css" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
     <link href="{{ asset('') }}assets/css/custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('') }}assets/css/iziToast.min.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -36,10 +37,11 @@
                         <div class="text-center mt-sm-5 mb-4 text-white-50">
                             <div>
                                 <a href="index.html" class="d-inline-block auth-logo">
-                                    <img src="{{ asset('') }}assets/images/logo-light.png" alt="" height="20">
+                                    <img src="{{ asset('') }}assets/images/logo-dark.png" alt=""
+                                        height="20">
                                 </a>
                             </div>
-                            <p class="mt-3 fs-15 fw-medium">Premium Admin & Dashboard Template</p>
+                            <p class="mt-3 fs-15 fw-medium text-dark">Premium Admin & Dashboard Template</p>
                         </div>
                     </div>
                 </div>
@@ -53,29 +55,48 @@
                                 <div class="text-center mt-2">
                                     <h5 class="text-primary">Welcome Back !</h5>
                                     <p class="text-muted">Sign in to continue to Velzon.</p>
+                                    <p><x-auth-session-status class="mb-4" :status="session('status')" /></p>
                                 </div>
                                 <div class="p-2 mt-4">
-                                    <form action="index.html">
+                                    <form method="POST" action="{{ route('login') }}">
+                                        @csrf
 
                                         <div class="mb-3">
-                                            <label for="username" class="form-label">Username</label>
-                                            <input type="text" class="form-control" id="username" placeholder="Enter username">
+                                            <label for="email" class="form-label ">Email</label>
+                                            <input type="email"
+                                                class="form-control @error('email') is-invalid @enderror" name="email"
+                                                value="{{ old('email') }}" autofocus id="email"
+                                                placeholder="Enter email">
+                                            <div class="invalid-feedback mt-2">
+                                                {{ $errors->first('email') }}
+                                            </div>
                                         </div>
 
                                         <div class="mb-3">
                                             <div class="float-end">
-                                                <a href="auth-pass-reset-basic.html" class="text-muted">Forgot password?</a>
+                                                <a href="auth-pass-reset-basic.html" class="text-muted">Forgot
+                                                    password?</a>
                                             </div>
                                             <label class="form-label" for="password-input">Password</label>
                                             <div class="position-relative auth-pass-inputgroup mb-3">
-                                                <input type="password" class="form-control pe-5 password-input" placeholder="Enter password" id="password-input">
-                                                <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
+                                                <input type="password" name="password"
+                                                    class="form-control pe-5 password-input @error('password') is-invalid @enderror"
+                                                    placeholder="Enter password" id="password-input">
+                                                <div class="invalid-feedback mt-2">
+                                                    {{ $errors->first('password') }}
+                                                </div>
+                                                <button
+                                                    class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
+                                                    type="button" id="password-addon"><i
+                                                        class="ri-eye-fill align-middle"></i></button>
                                             </div>
                                         </div>
 
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="auth-remember-check">
-                                            <label class="form-check-label" for="auth-remember-check">Remember me</label>
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="auth-remember-check">
+                                            <label class="form-check-label" for="auth-remember-check">Remember
+                                                me</label>
                                         </div>
 
                                         <div class="mt-4">
@@ -87,10 +108,18 @@
                                                 <h5 class="fs-13 mb-4 title">Sign In with</h5>
                                             </div>
                                             <div>
-                                                <button type="button" class="btn btn-primary btn-icon waves-effect waves-light"><i class="ri-facebook-fill fs-16"></i></button>
-                                                <button type="button" class="btn btn-danger btn-icon waves-effect waves-light"><i class="ri-google-fill fs-16"></i></button>
-                                                <button type="button" class="btn btn-dark btn-icon waves-effect waves-light"><i class="ri-github-fill fs-16"></i></button>
-                                                <button type="button" class="btn btn-info btn-icon waves-effect waves-light"><i class="ri-twitter-fill fs-16"></i></button>
+                                                <button type="button"
+                                                    class="btn btn-primary btn-icon waves-effect waves-light"><i
+                                                        class="ri-facebook-fill fs-16"></i></button>
+                                                <button type="button"
+                                                    class="btn btn-danger btn-icon waves-effect waves-light"><i
+                                                        class="ri-google-fill fs-16"></i></button>
+                                                <button type="button"
+                                                    class="btn btn-dark btn-icon waves-effect waves-light"><i
+                                                        class="ri-github-fill fs-16"></i></button>
+                                                <button type="button"
+                                                    class="btn btn-info btn-icon waves-effect waves-light"><i
+                                                        class="ri-twitter-fill fs-16"></i></button>
                                             </div>
                                         </div>
                                     </form>
@@ -101,7 +130,8 @@
                         <!-- end card -->
 
                         <div class="mt-4 text-center">
-                            <p class="mb-0">Don't have an account ? <a href="auth-signup-basic.html" class="fw-semibold text-primary text-decoration-underline"> Signup </a> </p>
+                            <p class="mb-0">Don't have an account ? <a href="auth-signup-basic.html"
+                                    class="fw-semibold text-primary text-decoration-underline"> Signup </a> </p>
                         </div>
 
                     </div>
@@ -119,7 +149,10 @@
                     <div class="col-lg-12">
                         <div class="text-center">
                             <p class="mb-0 text-muted">&copy;
-                                <script>document.write(new Date().getFullYear())</script> Velzon. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script> Velzon. Crafted with <i class="mdi mdi-heart text-danger"></i>
+                                by Themesbrand
                             </p>
                         </div>
                     </div>
@@ -145,65 +178,38 @@
     <!-- password-addon init -->
     <script src="{{ asset('') }}assets/js/pages/password-addon.init.js"></script>
 
+    <script src="{{ asset('') }}assets/js/iziToast.min.js"></script>
 
-    @if(isset($alert) && $alert)
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <script>
+                iziToast.error({
+                    title: '',
+                    position: 'topRight',
+                    message: '{{ $error }}',
+                });
+            </script>
+        @endforeach
+    @endif
+
+    @if (session()->get('error'))
         <script>
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: '{{ $alertMessage }}',
+            iziToast.error({
+                position: 'topRight',
+                message: '{{ session()->get('error') }}',
+            });
+        </script>
+    @endif
+
+
+    @if (session()->get('success'))
+        <script>
+            iziToast.success({
+                position: 'topRight',
+                message: '{{ session()->get('success') }}',
             });
         </script>
     @endif
 </body>
 
 </html>
-
-
-{{-- <x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout> --}}

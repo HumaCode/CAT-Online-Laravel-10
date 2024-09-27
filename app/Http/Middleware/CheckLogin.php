@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class CheckLogin
@@ -16,11 +17,7 @@ class CheckLogin
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::check()) {
-            // Jika pengguna belum login, tampilkan SweetAlert
-            return response()->view('auth.login', [
-                'alert'         => true,
-                'alertMessage'  => 'Kamu harus login dulu!'
-            ]);
+            return redirect('login')->with('error', 'Kamu harus login dulu');
         }
 
         return $next($request);
