@@ -7,6 +7,7 @@ use App\Http\Controllers\Konfigurasi\PermissionController;
 use App\Http\Controllers\Konfigurasi\RoleController;
 use App\Http\Controllers\Konfigurasi\UserController;
 use App\Http\Controllers\MainMenu\DetailSoalController;
+use App\Http\Controllers\MainMenu\KategoriSoalController;
 use App\Http\Controllers\MainMenu\KategoriUjianController;
 use App\Http\Controllers\MainMenu\QuestionController;
 use App\Http\Controllers\MainMenu\SesiUjianController;
@@ -33,6 +34,10 @@ Route::group(['prefix' => 'main-menu', 'as' => 'main-menu.'], function () {
     // Kategori Ujian
     Route::post('kategori-ujian/data', [KategoriUjianController::class, 'getData'])->name('kategori-ujian.data');
     Route::resource('kategori-ujian', KategoriUjianController::class);
+    
+    // Kategori Soal
+    Route::post('kategori-soal/data', [KategoriSoalController::class, 'getData'])->name('kategori-soal.data');
+    Route::resource('kategori-soal', KategoriSoalController::class);
 
     // detail soal
     Route::get('data-soal/detail/{kode_soal}', [DetailSoalController::class, 'index'])->name('detail-soal.index');

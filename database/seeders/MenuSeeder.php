@@ -31,6 +31,10 @@ class MenuSeeder extends Seeder
         $sm = $mm->subMenus()->create(['name' => 'Kategori Ujian', 'url' => $mm->url . '/kategori-ujian', 'category' => $mm->category]);
         $this->attachMenupermission($sm, ['create', 'read', 'update', 'delete'], ['admin']);
 
+         // submenu
+         $sm = $mm->subMenus()->create(['name' => 'Kategori Soal', 'url' => $mm->url . '/kategori-soal', 'category' => $mm->category]);
+         $this->attachMenupermission($sm, ['create', 'read', 'update', 'delete'], ['admin']);
+
         // submenu
         $sm = $mm->subMenus()->create(['name' => 'Data Soal', 'url' => $mm->url . '/data-soal', 'category' => $mm->category]);
         $this->attachMenupermission($sm, ['create', 'read', 'update', 'delete'], ['admin']);
