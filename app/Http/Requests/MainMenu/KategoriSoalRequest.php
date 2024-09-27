@@ -19,7 +19,7 @@ class KategoriSoalRequest extends FormRequest
     public function fillData(KategoriSoal $kategoriSoal)
     {
         $kategoriSoal->fill([
-            'kategori_soal'     => ucwords($this->kategori),
+            'kategori_soal'     => strtoupper($this->kategori_soal),
         ]);
     }
 
